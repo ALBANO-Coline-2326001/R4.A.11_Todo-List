@@ -4,8 +4,6 @@ import '../../assets/css/tacheListe.css';
 
 const TacheListe = ({tasks, deleteTodo, editTodo, toggleComplete, editTask} ) => {
 
-
-
     return (
         <div className="task-list">
             <h2>Tâches en cours</h2>

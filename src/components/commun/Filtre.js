@@ -4,6 +4,7 @@ import Recherche from "./Recherche";
 import EnCoursEffectuer from "./EnCoursEffectuer";
 import {TodoContext} from "../contexts/TodoContext";
 
+
 const Filter = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const { todos, setTodos } = useContext(TodoContext);

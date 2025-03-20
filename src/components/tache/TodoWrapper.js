@@ -6,7 +6,6 @@ export const TodoWrapper = () => {
     const { todos, setTodos, todoFiltre, filtreActif, setFiltre } = useContext(TodoContext);
 
     const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id !== id));
-
     const toggleComplete = (id) => {
         setTodos(
             todos.map((todo) =>

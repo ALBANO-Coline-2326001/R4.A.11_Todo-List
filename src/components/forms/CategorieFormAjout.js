@@ -7,7 +7,6 @@ const CategorieFormAjout = ({ onClose }) => {
         couleur: '',
         pictogramme: ''
     });
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setCategory({ ...category, [name]: value });

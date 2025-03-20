@@ -5,7 +5,6 @@ const TacheItem = ({ task , deleteTodo, editTodo, toggleComplete}) => {
     const [detailsVisible, setDetailsVisible] = useState(false);
 
     const categoryClass = task.categorie ? `category-${task.categorie.color}` : '';
-
     return (
         <li className={`task-item ${categoryClass}`} onClick={() => setDetailsVisible(!detailsVisible)}>
             <p className={`${task.done ? "completed" : "incompleted"}`} onClick={(e) => {e.stopPropagation(); toggleComplete(task.id);}}>

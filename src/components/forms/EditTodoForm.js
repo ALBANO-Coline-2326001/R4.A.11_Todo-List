@@ -11,7 +11,6 @@ export const EditTodoForm = ({ editTask, task}) => {
         contacts: task.contacts,
         categorie: task.categorie
     });
-
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setDonnees({

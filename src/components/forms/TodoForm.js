@@ -10,7 +10,6 @@ export const TodoForm = ({ addTodo, categories }) => {
         contacts: '',
         categorie: categories.length > 0 ? categories[0].name : '' // Catégorie par défaut
     });
-
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setDonnees({

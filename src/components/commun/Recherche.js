@@ -7,7 +7,6 @@ const Recherche = () => {
 
     const [rechercheTerm, setRechercheTerm] = useState('');
     const sauvegarde = todos;
-
     const handleRecherche = (e) => {
         const term = e.target.value.toLowerCase();
         setRechercheTerm(term);

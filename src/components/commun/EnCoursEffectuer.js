@@ -10,6 +10,7 @@ const EnCoursEffectuer = () => {
         setFiltreActif(true);
     };
 
+
     const afficherTerminees = () => {
         const completedTasks = todos.filter((task) => task.done);
         setFiltre(completedTasks);

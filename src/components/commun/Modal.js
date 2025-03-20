@@ -15,6 +15,7 @@ const Modal = ({ isOpen, onClose }) => {
         icon: "" // À compléter plus tard avec les pictogrammes
     });
 
+
     const addCategory = () => {
         if (newCategory.name.length >= 3 && !categories.some(cat => cat.name === newCategory.name)) {
             setCategories([...categories, newCategory]);

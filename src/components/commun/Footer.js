@@ -5,7 +5,6 @@ import {TodoContext} from "../contexts/TodoContext";
 const Footer = ({nom}) => {
     const { todos, setTodos } = useContext(TodoContext);
 
-
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false)
