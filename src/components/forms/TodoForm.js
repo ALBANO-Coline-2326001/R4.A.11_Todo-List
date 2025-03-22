@@ -6,8 +6,8 @@ export const TodoForm = ({ addTodo, categories }) => {
         description: '',
         urgent: false,
         done: false,
-        dateEcheance: '',
-        contacts: '',
+        date_echeance: '',
+        contacts: [],
         categorie: categories.length > 0 ? categories[0].name : '' // Catégorie par défaut
     });
     const handleChange = (e) => {
@@ -22,14 +22,14 @@ export const TodoForm = ({ addTodo, categories }) => {
         e.preventDefault();
         if (donnees.value) {
             const selectedCategory = categories.find(cat => cat.name === donnees.categorie);
-            addTodo(donnees.value, donnees.description, donnees.urgent, donnees.done, donnees.dateEcheance, donnees.contacts, selectedCategory);
+            addTodo(donnees.value, donnees.description, donnees.urgent, donnees.done, donnees.date_echeance, donnees.contacts, selectedCategory);
             setDonnees({
                 value: '',
                 description: '',
                 urgent: false,
                 done: false,
-                dateEcheance: '',
-                contacts: '',
+                date_echeance: '',
+                contacts: [],
                 categorie: categories.length > 0 ? categories[0].name : ''
             });
         }
@@ -61,9 +61,9 @@ export const TodoForm = ({ addTodo, categories }) => {
             />
             <input
                 type="date"
-                name="dateEcheance"
+                name="date_echeance"
                 className="todo-input"
-                value={donnees.dateEcheance}
+                value={donnees.date_echeance}
                 onChange={handleChange}
             />
             <label>Urgent: <input type="checkbox" name="urgent" checked={donnees.urgent} onChange={handleChange}/></label>

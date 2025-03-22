@@ -23,7 +23,6 @@ const Recherche = () => {
                 (todo.description && todo.description.toLowerCase().includes(term)) ||
                 (todo.categorie && todo.categorie.toLowerCase().includes(term))
             );
-            console.log(filteredTodos);
             setFiltreActif(true);
             setFiltre(filteredTodos);
         }

@@ -4,7 +4,7 @@ import { TodoWrapper } from './components/tache/TodoWrapper';
 import Header from "./components/commun/Header";
 import Footer from "./components/commun/Footer";
 import Filtre from "./components/commun/Filtre";
-import data from './assets/json/data.json'
+//import data from './assets/json/data.json'
 import { TodoProvider } from "./components/contexts/TodoContext"; // Import du contexte
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   return (
       <TodoProvider>
           <div className="App">
-              {JSON.stringify(data)}
+              {/*JSON.stringify(data)*/}
               <Header />
               <Filtre />
               <TodoWrapper/>

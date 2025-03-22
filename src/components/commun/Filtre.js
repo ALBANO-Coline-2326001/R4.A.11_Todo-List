@@ -7,7 +7,7 @@ import {TodoContext} from "../contexts/TodoContext";
 
 const Filter = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const { todos, setTodos } = useContext(TodoContext);
+    const { todos, setTodos, todoFiltre, setFiltre, filtreActif } = useContext(TodoContext);
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -20,23 +20,46 @@ const Filter = () => {
 
     const sortTodos = (criteria) => {
         let sortedTodos;
-        switch (criteria) {
-            case 'alphabetical':
-                sortedTodos = [...todos].sort((a, b) => a.value.localeCompare(b.value));
-                break;
-            case 'creationDate':
-                sortedTodos = [...todos].sort((a, b) => new Date(a.dateCreation) - new Date(b.dateCreation));
-                break;
-            case 'dueDate':
-                sortedTodos = [...todos].sort((a, b) => new Date(a.dateEcheance) - new Date(b.dateEcheance));
-                break;
-            case 'category':
-                sortedTodos = [...todos].sort((a, b) => a.categorie.localeCompare(b.categorie));
-                break;
-            default:
-                sortedTodos = todos;
+        if (filtreActif) {
+            switch (criteria) {
+                case 'alphabetical':
+                    sortedTodos = [...todoFiltre].sort((a, b) => a.value.localeCompare(b.value));
+                    break;
+                case 'creationDate':
+                    sortedTodos = [...todoFiltre].sort((a, b) => new Date(a.date_creation) - new Date(b.date_creation));
+                    break;
+                case 'dueDate':
+                    sortedTodos = [...todoFiltre].sort((a, b) => new Date(a.date_echeance) - new Date(b.date_echeance));
+                    break;
+                case 'category':
+                    sortedTodos = [...todoFiltre].sort((a, b) => a.categorie.localeCompare(b.categorie));
+                    break;
+                default:
+                    sortedTodos = todoFiltre;
+            }
+
+            setFiltre(sortedTodos);
         }
-        setTodos(sortedTodos);
+        else {
+            switch (criteria) {
+                case 'alphabetical':
+                    sortedTodos = [...todos].sort((a, b) => a.value.localeCompare(b.value));
+                    break;
+                case 'creationDate':
+                    sortedTodos = [...todos].sort((a, b) => new Date(a.date_creation) - new Date(b.date_creation));
+                    break;
+                case 'dueDate':
+                    sortedTodos = [...todos].sort((a, b) => new Date(a.date_echeance) - new Date(b.date_echeance));
+                    break;
+                case 'category':
+                    sortedTodos = [...todos].sort((a, b) => a.categorie.localeCompare(b.categorie));
+                    break;
+                default:
+                    sortedTodos = todos;
+            }
+
+            setTodos(sortedTodos);
+        }
     };
 
 

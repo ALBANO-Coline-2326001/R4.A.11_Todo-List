@@ -30,18 +30,20 @@ const Modal = ({ isOpen, onClose }) => {
         }
     };
 
-    const addTodo = (value, description, urgent, done, dateEcheance, contacts, categorie) => {
+    const addTodo = (value, description, urgent, done, date_echeance, contacts, categorie) => {
+        const formattedContacts = typeof contacts === 'string' ? contacts.split(' ').map(contact => ({ name: contact })) : [];
+
         setTodos([
             ...todos,
             {
                 id: todos.length + 1,
                 value,
                 description,
-                dateCreation: new Date(),
-                dateEcheance,
+                date_creation: new Date(),
+                date_echeance,
                 done,
                 urgent,
-                contacts,
+                contacts: formattedContacts,
                 categorie,
                 isEditing: false
             }
@@ -53,6 +55,8 @@ const Modal = ({ isOpen, onClose }) => {
     return (
         <div className="modal-overlay">
             <div className="modal-content">
+                {console.log(categories)}
+
                 <h3>Ajouter une Tâche et une Catégorie</h3>
                 <div>
                     <button onClick={() => setIsTaskForm(true)}>Ajouter Tâche</button>

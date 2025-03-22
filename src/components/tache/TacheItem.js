@@ -9,7 +9,7 @@ const TacheItem = ({ task , deleteTodo, editTodo, toggleComplete}) => {
         <li className={`task-item ${categoryClass}`} onClick={() => setDetailsVisible(!detailsVisible)}>
             <p className={`${task.done ? "completed" : "incompleted"}`} onClick={(e) => {e.stopPropagation(); toggleComplete(task.id);}}>
                 {task.value}</p>
-            <p><strong>Date d'échéance:</strong> {new Date(task.dateEcheance).toLocaleDateString()}</p>
+            <p><strong>Date d'échéance:</strong> {new Date(task.date_echeance).toLocaleDateString()}</p>
             <div>
                 <button className="edit-icon" onClick={() => editTodo(task.id)}>Edit</button>
             </div>
@@ -17,11 +17,19 @@ const TacheItem = ({ task , deleteTodo, editTodo, toggleComplete}) => {
             {detailsVisible && (
                 <div className="task-details">
                     <p><strong>Description:</strong> {task.description || "Aucune description"}</p>
-                    <p><strong>Date de création:</strong> {new Date(task.dateCreation).toLocaleDateString()}</p>
+                    <p><strong>Date de création:</strong> {new Date(task.date_creation).toLocaleDateString()}</p>
                     <p><strong>Urgent:</strong> {task.urgent ? "Oui" : "Non"}</p>
                     <p><strong>Statut:</strong> {task.done ? "Oui" : "Non"}</p>
-                    <p><strong>Contacts:</strong> {task.contacts || "Aucun contact"}</p>
-                    <button className="delete-icon" onClick={() => deleteTodo(task.id)}>Supprimer</button>
+                    {task.contacts && task.contacts.length > 0 && (
+                        <div>
+                            <label><strong>Contacts:</strong></label>
+                            <ul>
+                                {task.contacts.map((contact, index) => (
+                                    <li key={index}>{contact.name}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}                    <button className="delete-icon" onClick={() => deleteTodo(task.id)}>Supprimer</button>
                 </div>
             )}
         </li>

@@ -6,9 +6,10 @@ export const TodoProvider = ({ children }) => {
     const [todoFiltre, setFiltre] = useState([]);
     const [filtreActif, setFiltreActif] = useState(false);
     const [categories, setCategories] = useState([]);
+    const [relations, setRelations] = useState([]);
 
     return (
-        <TodoContext.Provider value={{ todos, setTodos, todoFiltre, setFiltre, filtreActif, setFiltreActif, categories, setCategories }}>
+        <TodoContext.Provider value={{ todos, setTodos, todoFiltre, setFiltre, filtreActif, setFiltreActif, categories, setCategories, relations, setRelations }}>
             {children}
         </TodoContext.Provider>
     );

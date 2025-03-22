@@ -30,18 +30,18 @@ export const TodoWrapper = () => {
         );
     }
 
-    const editTask = (id, value, description, urgent, done, dateEcheance, contacts, categorie, task) => {
+    const editTask = (id, value, description, urgent, done, date_echeance, contacts, categorie, task) => {
         task.id = id;
         task.value = value
         task.description = description
-        task.urgent = urgent
+        task.date_echeance = date_echeance
         task.done = done
-        task.dateEcheance = dateEcheance
-        task.contacts = contacts
+        task.urgent = urgent
+
+        task.contacts = contacts.split(' ').map(contact => ({ name: contact }));
         task.categorie = categorie
 
-        console.log(task)
-        console.log(task.id)
+
 
         setTodos(
             todos.map((todo) =>
