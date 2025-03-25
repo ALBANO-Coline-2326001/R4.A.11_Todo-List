@@ -3,7 +3,7 @@ import './assets/css/App.css';
 import { TodoWrapper } from './components/tache/TodoWrapper';
 import Header from "./components/commun/Header";
 import Footer from "./components/commun/Footer";
-import Filtre from "./components/commun/Filtre";
+import Filtre from "./components/commun/FiltreZone";
 //import data from './assets/json/data.json'
 import { TodoProvider } from "./components/contexts/TodoContext"; // Import du contexte
 

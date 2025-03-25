@@ -14,10 +14,11 @@ const Recherche = () => {
     };
 
     const filtreTodos = (term) => {
-        if (term === '') {
+        if (term.length < 3 ) {
             setFiltre([]);
             setFiltreActif(false);
         } else {
+            console.log('term', term.length);
             const filteredTodos = sauvegarde.filter(todo =>
                 (todo.value && todo.value.toLowerCase().includes(term)) ||
                 (todo.description && todo.description.toLowerCase().includes(term)) ||

@@ -6,7 +6,7 @@ import { TodoContext } from '../contexts/TodoContext';
 const Footer = ({ nom }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
-    const { setTodos, setCategories, setRelations, categories } = useContext(TodoContext);
+    const { setTodos, setCategories, setRelations } = useContext(TodoContext);
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
@@ -16,6 +16,7 @@ const Footer = ({ nom }) => {
     };
 
     const handleLoadBackup = () => {
+
         fetch('/data.json')
             .then(response => {
                 if (!response.ok) {
@@ -27,8 +28,8 @@ const Footer = ({ nom }) => {
                 setTodos(prevTodos => [...prevTodos, ...data.taches]);
                 setCategories(prevCategories => [...prevCategories, ...data.categories]);
                 setRelations(prevRelations => [...prevRelations, ...data.relations]);
-                console.log(categories)
                 setIsDataLoaded(true);
+
             })
             .catch(error => console.error('Error loading backup:', error));
     };
@@ -38,6 +39,14 @@ const Footer = ({ nom }) => {
             resetApp();
         }
     };
+
+
+    if (!isDataLoaded) {
+        if (window.confirm('Voulez vous charger des données ?')) {
+            handleLoadBackup();
+        }
+        setIsDataLoaded(true)
+    }
 
     return (
         <footer>

@@ -1,36 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { TodoContext } from '../contexts/TodoContext';
 
-export const TodoForm = ({ addTodo, categories }) => {
-    const [donnees, setDonnees] = useState({
+const TodoForm = () => {
+    const { todos, setTodos, categories, relations, setRelations } = useContext(TodoContext);
+    const [donneTache, setDonneTache] = useState({
         value: '',
         description: '',
         urgent: false,
         done: false,
         date_echeance: '',
-        contacts: [],
-        categorie: categories.length > 0 ? categories[0].name : '' // Catégorie par défaut
+        contacts: '',
+        selectedCategories: []
     });
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-        setDonnees({
-            ...donnees,
-            [name]: type === 'checkbox' ? checked : value
-        });
+        if (name === 'selectedCategories') {
+            const categoryId = parseInt(value);
+            setDonneTache(prevData => ({
+                ...prevData,
+                selectedCategories: checked
+                    ? [...prevData.selectedCategories, categoryId]
+                    : prevData.selectedCategories.filter(id => id !== categoryId)
+            }));
+        } else {
+            setDonneTache(prevData => ({
+                ...prevData,
+                [name]: type === 'checkbox' ? checked : value
+            }));
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (donnees.value) {
-            const selectedCategory = categories.find(cat => cat.name === donnees.categorie);
-            addTodo(donnees.value, donnees.description, donnees.urgent, donnees.done, donnees.date_echeance, donnees.contacts, selectedCategory);
-            setDonnees({
+        if (donneTache.value) {
+            const newTodo = {
+                id: todos.length + 1,
+                value: donneTache.value,
+                description: donneTache.description,
+                date_creation: new Date(),
+                date_echeance: donneTache.date_echeance,
+                done: donneTache.done,
+                urgent: donneTache.urgent,
+                contacts: donneTache.contacts.split(' ').map(name => ({ name })),
+                isEditing: false
+            };
+
+            setTodos([...todos, newTodo]);
+
+            const newRelations = donneTache.selectedCategories.map(categoryId => ({
+                tache: newTodo.id,
+                categorie: categoryId
+            }));
+            setRelations([...relations, ...newRelations]);
+
+            setDonneTache({
                 value: '',
                 description: '',
                 urgent: false,
                 done: false,
                 date_echeance: '',
-                contacts: [],
-                categorie: categories.length > 0 ? categories[0].name : ''
+                contacts: '',
+                selectedCategories: []
             });
         }
     };
@@ -40,21 +71,21 @@ export const TodoForm = ({ addTodo, categories }) => {
             <input
                 type="text"
                 name="value"
-                value={donnees.value}
+                value={donneTache.value}
                 onChange={handleChange}
                 className="todo-input"
                 placeholder="Ajouter une tâche"
             />
             <textarea
                 name="description"
-                value={donnees.description}
+                value={donneTache.description}
                 onChange={handleChange}
                 className="todo-input"
                 placeholder="Ajouter une description"
             />
             <textarea
                 name="contacts"
-                value={donnees.contacts}
+                value={donneTache.contacts}
                 onChange={handleChange}
                 className="todo-input"
                 placeholder="Ajouter des contacts"
@@ -63,24 +94,33 @@ export const TodoForm = ({ addTodo, categories }) => {
                 type="date"
                 name="date_echeance"
                 className="todo-input"
-                value={donnees.date_echeance}
+                value={donneTache.date_echeance}
                 onChange={handleChange}
             />
-            <label>Urgent: <input type="checkbox" name="urgent" checked={donnees.urgent} onChange={handleChange}/></label>
-            <label>Statut: <input type="checkbox" name="done" checked={donnees.done} onChange={handleChange}/></label>
+            <label>Urgent: <input type="checkbox" name="urgent" checked={donneTache.urgent} onChange={handleChange} /></label>
+            <label>Statut: <input type="checkbox" name="done" checked={donneTache.done} onChange={handleChange} /></label>
 
             {categories.length > 0 && (
-                <label>
-                    Catégorie:
-                    <select name="categorie" value={donnees.categorie} onChange={handleChange}>
-                        {categories.map((cat, index) => (
-                            <option key={index} value={cat.name}>{cat.name}</option>
-                        ))}
-                    </select>
-                </label>
+                <div>
+                    <label>Catégories:</label>
+                    {categories.map(cat => (
+                        <div key={cat.id}>
+                            <input
+                                type="checkbox"
+                                name="selectedCategories"
+                                value={cat.id}
+                                checked={donneTache.selectedCategories.includes(cat.id)}
+                                onChange={handleChange}
+                            />
+                            {cat.name}
+                        </div>
+                    ))}
+                </div>
             )}
 
             <button type="submit" className="todo-btn">Ajouter</button>
         </form>
     );
 };
+
+export default TodoForm;

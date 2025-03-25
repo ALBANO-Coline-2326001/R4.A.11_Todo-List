@@ -1,13 +1,9 @@
-import React, {useContext, useState} from 'react';
-import '../../assets/css/filter.css';
-import Recherche from "./Recherche";
-import EnCoursEffectuer from "./EnCoursEffectuer";
-import {TodoContext} from "../contexts/TodoContext";
+import React, { useContext, useState } from "react";
+import { TodoContext } from "../contexts/TodoContext";
 
-
-const Filter = () => {
+function Filtre() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const { todos, setTodos, todoFiltre, setFiltre, filtreActif } = useContext(TodoContext);
+    const { todos, setTodos, todoFiltre, setFiltre, filtreActif, relations, categories } = useContext(TodoContext);
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -20,6 +16,15 @@ const Filter = () => {
 
     const sortTodos = (criteria) => {
         let sortedTodos;
+        const getCategoryName = (taskId) => {
+            const relation = relations.find(rel => rel.tache === taskId);
+            if (relation) {
+                const category = categories.find(cat => cat.id === relation.categorie);
+                return category ? category.name : '';
+            }
+            return '';
+        };
+
         if (filtreActif) {
             switch (criteria) {
                 case 'alphabetical':
@@ -32,15 +37,14 @@ const Filter = () => {
                     sortedTodos = [...todoFiltre].sort((a, b) => new Date(a.date_echeance) - new Date(b.date_echeance));
                     break;
                 case 'category':
-                    sortedTodos = [...todoFiltre].sort((a, b) => a.categorie.localeCompare(b.categorie));
+                    sortedTodos = [...todoFiltre].sort((a, b) => getCategoryName(a.id).localeCompare(getCategoryName(b.id)));
                     break;
                 default:
                     sortedTodos = todoFiltre;
             }
 
             setFiltre(sortedTodos);
-        }
-        else {
+        } else {
             switch (criteria) {
                 case 'alphabetical':
                     sortedTodos = [...todos].sort((a, b) => a.value.localeCompare(b.value));
@@ -52,7 +56,7 @@ const Filter = () => {
                     sortedTodos = [...todos].sort((a, b) => new Date(a.date_echeance) - new Date(b.date_echeance));
                     break;
                 case 'category':
-                    sortedTodos = [...todos].sort((a, b) => a.categorie.localeCompare(b.categorie));
+                    sortedTodos = [...todos].sort((a, b) => getCategoryName(a.id).localeCompare(getCategoryName(b.id)));
                     break;
                 default:
                     sortedTodos = todos;
@@ -62,10 +66,8 @@ const Filter = () => {
         }
     };
 
-
-
     return (
-        <div className="filter-container">
+        <div>
             <button className="filter-button" onClick={toggleDropdown}>
                 <img src="../../../public/filtre.png" alt="Filter" />
             </button>
@@ -77,10 +79,8 @@ const Filter = () => {
                     <li onClick={() => handleSort('category')}>Catégorie</li>
                 </ul>
             )}
-            <Recherche />
-            <EnCoursEffectuer  />
         </div>
     );
-};
+}
 
-export default Filter;
+export default Filtre;

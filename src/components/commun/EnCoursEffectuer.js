@@ -3,47 +3,35 @@ import { TodoContext } from "../contexts/TodoContext";
 
 const EnCoursEffectuer = () => {
     const { todos, setFiltre, setFiltreActif } = useContext(TodoContext);
+    const semaineDerniere = new Date();
+    semaineDerniere.setDate(semaineDerniere.getDate() - 7);
+
+    const tachesNonDate = todos.filter(task => new Date(task.date_echeance) >= semaineDerniere);
 
     const afficherEnCours = () => {
-        const inProgressTasks = todos.filter((task) => !task.done);
+        const inProgressTasks = tachesNonDate.filter((task) => !task.done);
         setFiltre(inProgressTasks);
         setFiltreActif(true);
     };
 
-
     const afficherTerminees = () => {
-        const completedTasks = todos.filter((task) => task.done);
+        const completedTasks = tachesNonDate.filter((task) => task.done);
         setFiltre(completedTasks);
         setFiltreActif(true);
     };
 
     const afficherToutes = () => {
-        setFiltre([]);
+        setFiltre(todos);
         setFiltreActif(false);
     };
 
     return (
         <div className="flex space-x-4">
-            <button
-                onClick={afficherEnCours}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-            >
-                Afficher les tâches en cours
-            </button>
+            <button onClick={afficherEnCours}>Afficher les tâches en cours (Tache daté de 1 semaine non affichée)</button>
 
-            <button
-                onClick={afficherTerminees}
-                className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-            >
-                Afficher les tâches terminées
-            </button>
+            <button onClick={afficherTerminees}>Afficher les tâches terminées (Tache daté de 1 semaine non affichée)</button>
 
-            <button
-                onClick={afficherToutes}
-                className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
-            >
-                Afficher toutes les tâches
-            </button>
+            <button onClick={afficherToutes}>Afficher toutes les tâches</button>
         </div>
     );
 };

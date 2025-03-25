@@ -29,9 +29,56 @@ body {
 
 /*Categories*/
 .category-red {
-  background-color: red;
+  border: 2px solid red;
+  color: red;
 }
 
 .category-blue {
-  background-color: blue;
+  border: 2px solid blue;
+  color: blue;
+}
+
+.category-green {
+  border: 2px solid green;
+  color: green;
+}
+
+.category-yellow {
+  border: 2px solid yellow;
+  color: yellow;
+}
+
+.category-purple {
+  border: 2px solid purple;
+  color: purple;
+}
+
+.category-orange {
+  border: 2px solid orange;
+  color: orange;
+}
+
+.category-pink {
+  border: 2px solid pink;
+  color: pink;
+}
+
+.category-black {
+  border: 2px solid black;
+  color: black;
+}
+
+.category-gray {
+  border: 2px solid gray;
+  color: gray;
+}
+
+.category-brown {
+  border: 2px solid brown;
+  color: brown;
+}
+
+.category-bluesky {
+  border: 2px solid #6262b5;
+  color: #6262b5;
 }
