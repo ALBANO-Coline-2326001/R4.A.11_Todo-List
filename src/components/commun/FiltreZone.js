@@ -1,4 +1,3 @@
-import '../../assets/css/filter.css';
 import Recherche from "./Recherche";
 import EnCoursEffectuer from "./EnCoursEffectuer";
 import Filtre from "./Filtre";

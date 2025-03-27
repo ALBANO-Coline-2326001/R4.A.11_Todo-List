@@ -1,4 +1,4 @@
-/* App.css */
+/* App */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -11,7 +11,45 @@ body {
   text-align: center;
   padding: 20px;
 }
+/* EditTodoForm */
+.TodoForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
 
+
+.TodoForm .todo-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 1em;
+}
+
+.TodoForm .todo-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.TodoForm .todo-btn:hover {
+  background-color: #45a049;
+}
+
+/* TodoWrapper */
 .TodoWrapper {
   background: #fff;
   padding: 20px;
@@ -81,4 +119,238 @@ body {
 .category-bluesky {
   border: 2px solid #6262b5;
   color: #6262b5;
+}
+
+/* filter */
+
+.filter-container {
+  position: relative;
+  display: inline-block;
+}
+
+.filter-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+.filter-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 200px;
+}
+
+.filter-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.filter-dropdown li:hover {
+  background-color: #f0f0f0;
+}
+
+
+/* Footer.css */
+footer {
+  background-color: #282c34;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1em;
+}
+
+
+footer .add-button {
+  background-color: #61dafb;
+  border: none;
+  padding: 10px 20px;
+  color: #282c34;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+
+/* Header */
+header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+
+header .stats {
+  margin-top: 10px;
+  font-size: 1em;
+}
+
+
+
+/*Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 500px;
+  max-width: 100%;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+
+/* Tache item */
+.task-item {
+  background: #fff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.task-item:hover {
+  background-color: #f9f9f9;
+}
+
+
+.task-item h3 {
+  margin: 0;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.task-item p {
+  margin: 10px 0;
+  font-size: 1em;
+}
+
+.task-item .completed {
+  color: #c5aeff;
+  text-decoration: line-through;
+}
+
+.task-item .incompleted {
+  color: #333;
+}
+
+.task-item .task-details {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.task-item .task-details p {
+  margin: 5px 0;
+}
+
+.task-item button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.task-item .edit-icon {
+  background-color: #4caf50;
+  color: white;
+}
+
+.task-item .edit-icon:hover {
+  background-color: #45a049;
+}
+
+.task-item .delete-icon {
+  background-color: #f44336;
+  color: white;
+}
+
+.task-item .delete-icon:hover {
+  background-color: #e53935;
+}
+
+.task-item .complete-icon {
+  background-color: #2196f3;
+  color: white;
+}
+
+.task-item .complete-icon:hover {
+  background-color: #1e88e5;
+}
+
+/* TaskList */
+.task-list {
+  background: #fff;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.task-list h2 {
+  margin: 0 0 20px;
+  font-size: 1.5em;
+  color: #333;
+
+}
+
+.task-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-list p {
+  font-size: 1em;
+  color: #666;
+  text-align: center;
 }

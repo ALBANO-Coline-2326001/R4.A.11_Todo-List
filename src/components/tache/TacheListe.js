@@ -1,6 +1,5 @@
 import TacheItem from "./TacheItem";
 import {EditTodoForm} from "../forms/EditTodoForm";
-import '../../assets/css/tacheListe.css';
 
 const TacheListe = ({tasks, deleteTodo, editTodo, toggleComplete, editTask} ) => {
 

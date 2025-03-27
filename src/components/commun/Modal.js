@@ -1,12 +1,9 @@
-import React, {useContext, useState} from 'react';
-import '../../assets/css/modal.css';
+import React, { useState} from 'react';
 import  TodoForm  from "../forms/TodoForm";
 import  CategoryForm  from "../forms/CategoryForm";
-import {TodoContext} from "../contexts/TodoContext";
 
 const Modal = ({ isOpen, onClose }) => {
     const [isTaskForm, setIsTaskForm] = useState(true);
-    const { todos, categories, relations } = useContext(TodoContext);
 
 
 

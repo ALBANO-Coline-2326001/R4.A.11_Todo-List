@@ -1,5 +1,4 @@
 import React, {useContext, useState} from 'react';
-import '../../assets/css/recherche.css';
 import {TodoContext} from "../contexts/TodoContext";
 
 const Recherche = () => {

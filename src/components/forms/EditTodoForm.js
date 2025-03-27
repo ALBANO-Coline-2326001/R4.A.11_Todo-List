@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../../assets/css/editTodoForm.css';
 
 export const EditTodoForm = ({ editTask, task }) => {
     const [donnees, setDonnees] = useState({

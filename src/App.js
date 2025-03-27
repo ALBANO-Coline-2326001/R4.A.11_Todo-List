@@ -9,7 +9,8 @@ import { TodoProvider } from "./components/contexts/TodoContext"; // Import du c
 
 function App() {
 
-  return (
+  
+    return (
       <TodoProvider>
           <div className="App">
               {/*JSON.stringify(data)*/}
@@ -19,7 +20,6 @@ function App() {
               <Footer nom="Coline"  />
           </div>
       </TodoProvider>
-
 
   );
 }

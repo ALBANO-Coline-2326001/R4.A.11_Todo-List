@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import '../../assets/css/tacheItem.css';
 import { TodoContext } from "../contexts/TodoContext";
 
 const TacheItem = ({ task, deleteTodo, editTodo, toggleComplete }) => {

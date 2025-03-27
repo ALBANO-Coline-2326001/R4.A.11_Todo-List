@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import '../../assets/css/footer.css';
 import Modal from "./Modal";
 import { TodoContext } from '../contexts/TodoContext';
 
