@@ -1,7 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { TodoContext } from '../contexts/TodoContext';
 
+//Formulaire de catégorie
 const CategoryForm = () => {
+
+    //Chargement des variables depuis le contexte ou initialisation des autres variables
     const { categories, setCategories } = useContext(TodoContext);
     const [donneCategory, setDonneCategory] = useState({
         id: 0,
@@ -11,6 +14,7 @@ const CategoryForm = () => {
         icon: ""
     });
 
+    //Fonction pour ajouter une catégorie
     const addCategory = () => {
         if (donneCategory.name.length >= 3 && !categories.some(cat => cat.name === donneCategory.name)) {
             setCategories([...categories, { ...donneCategory, id: categories.length + 1 }]);
@@ -29,6 +33,7 @@ const CategoryForm = () => {
         }
     };
 
+    //Affichage du formulaire de catégorie
     return (
         <div>
             <input

@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import { TodoContext } from "../contexts/TodoContext";
 
+//Affihcage d'une tache
 const TacheItem = ({ task, deleteTodo, editTodo, toggleComplete }) => {
+    //Chargement des variables depuis le contexte ou initialisation des autres variables
     const [detailsVisible, setDetailsVisible] = useState(false);
     const [showAddCategory, setShowAddCategory] = useState(false);
     const { relations, categories, setRelations } = useContext(TodoContext);
 
+    //Fonction pour lister les catégories d'une tâche
     const listCatTask = (id) => {
         return relations
             .filter(relation => relation.tache === id)
@@ -13,21 +16,25 @@ const TacheItem = ({ task, deleteTodo, editTodo, toggleComplete }) => {
             .filter(cat => cat !== undefined);
     };
 
+    //Fonction pour supprimer une catégorie à une tâche
     const removeCategory = (taskId, categoryId) => {
         setRelations(prevRelations => prevRelations.filter(relation => !(relation.tache === taskId && relation.categorie === categoryId)));
     };
 
+    //Fonction pour ajouter une catégorie à une tâche
     const addCategory = (taskId, categoryId) => {
         setRelations(prevRelations => [...prevRelations, { tache: taskId, categorie: categoryId }]);
         setShowAddCategory(false);
     };
 
 
+    //Mise à jour des variables
     const taskCategories = listCatTask(task.id);
     const displayedCategories = detailsVisible ? taskCategories : taskCategories.slice(0, 2);
     const availableCategories = categories.filter(cat => !taskCategories.some(taskCat => taskCat.id === cat.id));
 
-
+    //Affichage d'une tâche, quand on clic dessus, son détail apparait ou disparait
+    //On affiche aussi les catégories de la tache
     return (
         <li className="task-item" onClick={() => setDetailsVisible(!detailsVisible)}>
             <p className={`${task.done ? "completed" : "incompleted"}`} onClick={(e) => { e.stopPropagation(); toggleComplete(task.id); }}>

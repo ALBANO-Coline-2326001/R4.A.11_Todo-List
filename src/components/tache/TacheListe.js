@@ -1,8 +1,10 @@
 import TacheItem from "./TacheItem";
 import {EditTodoForm} from "../forms/EditTodoForm";
 
+//Affichage de la liste des tâches
 const TacheListe = ({tasks, deleteTodo, editTodo, toggleComplete, editTask} ) => {
 
+    //On affiche soit la liste des taches fltrées soit la liste des taches globales
     return (
         <div className="task-list">
             <h2>Tâches en cours</h2>

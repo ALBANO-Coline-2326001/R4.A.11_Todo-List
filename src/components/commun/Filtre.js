@@ -2,18 +2,22 @@ import React, { useContext, useState } from "react";
 import { TodoContext } from "../contexts/TodoContext";
 
 function Filtre() {
+    //Chargement des variables depuis le contexte ou initialisation des autres variables
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const { todos, setTodos, todoFiltre, setFiltre, filtreActif, relations, categories } = useContext(TodoContext);
 
+    //Fonction pour ouvrir ou fermer la selection du filtre
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
 
+    //Trie des taches
     const handleSort = (criteria) => {
         sortTodos(criteria);
         setIsDropdownOpen(false);
     };
 
+    //Fonction pour trier les taches globales ou les taches filtrées
     const sortTodos = (criteria) => {
         let sortedTodos;
         const getCategoryName = (taskId) => {
@@ -42,7 +46,6 @@ function Filtre() {
                 default:
                     sortedTodos = todoFiltre;
             }
-
             setFiltre(sortedTodos);
         } else {
             switch (criteria) {
@@ -61,11 +64,11 @@ function Filtre() {
                 default:
                     sortedTodos = todos;
             }
-
             setTodos(sortedTodos);
         }
     };
 
+    //Affichage du bouton de filtre et du menu déroulant
     return (
         <div>
             <button className="filter-button" onClick={toggleDropdown}>

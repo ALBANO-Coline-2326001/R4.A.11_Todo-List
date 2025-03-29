@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { TodoContext } from '../contexts/TodoContext';
 
+//Formulaire pour ajouter une tâche
 const TodoForm = () => {
+    //Chargement des variables depuis le contexte ou initialisation des autres variables
     const { todos, setTodos, categories, relations, setRelations } = useContext(TodoContext);
     const [donneTache, setDonneTache] = useState({
         value: '',
@@ -13,6 +15,7 @@ const TodoForm = () => {
         selectedCategories: []
     });
 
+    //Traduction des données dans les champs du formulaire
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         if (name === 'selectedCategories') {
@@ -31,6 +34,7 @@ const TodoForm = () => {
         }
     };
 
+    //Récupère les données dans les champs du formulaire
     const handleSubmit = (e) => {
         e.preventDefault();
         if (donneTache.value) {
@@ -66,6 +70,7 @@ const TodoForm = () => {
         }
     };
 
+    //Affichage du formulaire
     return (
         <form onSubmit={handleSubmit} className="TodoForm">
             <input

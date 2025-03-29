@@ -1,5 +1,7 @@
 import { createContext, useState } from "react";
 
+
+//Initialisation des variables globales
 export const TodoContext = createContext();
 export const TodoProvider = ({ children }) => {
     const [todos, setTodos] = useState([]);
@@ -7,7 +9,6 @@ export const TodoProvider = ({ children }) => {
     const [filtreActif, setFiltreActif] = useState(false);
     const [categories, setCategories] = useState([]);
     const [relations, setRelations] = useState([]);
-
 
     return (
         <TodoContext.Provider value={{ todos, setTodos, todoFiltre, setFiltre, filtreActif, setFiltreActif, categories, setCategories, relations, setRelations }}>

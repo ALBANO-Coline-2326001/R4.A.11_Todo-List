@@ -7,13 +7,11 @@ import Filtre from "./components/commun/FiltreZone";
 //import data from './assets/json/data.json'
 import { TodoProvider } from "./components/contexts/TodoContext"; // Import du contexte
 
+//Chargement des différents composents de l'application
 function App() {
-
-  
     return (
       <TodoProvider>
           <div className="App">
-              {/*JSON.stringify(data)*/}
               <Header />
               <Filtre />
               <TodoWrapper/>

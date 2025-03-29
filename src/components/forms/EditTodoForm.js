@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
+//Formulaire de modification de tâche
 export const EditTodoForm = ({ editTask, task }) => {
+
+    // Initialisation des autres variables
     const [donnees, setDonnees] = useState({
         value: task.value,
         description: task.description,
@@ -11,6 +14,7 @@ export const EditTodoForm = ({ editTask, task }) => {
         categorie: task.categorie
     });
 
+    //Traduction des données dans les champs du formulaire
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setDonnees({
@@ -19,6 +23,7 @@ export const EditTodoForm = ({ editTask, task }) => {
         });
     };
 
+    //Récupère les données dans les champs du formulaire
     const handleSubmit = (e) => {
         e.preventDefault();
         if (donnees.value) {
@@ -34,6 +39,7 @@ export const EditTodoForm = ({ editTask, task }) => {
         }
     };
 
+    //Affichage du formulaire
     return (
         <form onSubmit={handleSubmit} className="TodoForm">
             <input type="text" name="value" value={donnees.value} onChange={handleChange} className="todo-input" placeholder="Ajouter une tache" />
